@@ -2,15 +2,15 @@ import AppLayout from '@/components/AppLayout'
 import Head from 'next/head'
 import React from 'react'
 
-function Signup() {
+function Profile() {
   return (
     <>
     <Head>
-        <title>회원가입 | TravelBird</title>
+        <title>프로필 | TravelBird</title>
     </Head>
-    <AppLayout>회원가입 페이지</AppLayout>
+    <AppLayout>프로필 페이지</AppLayout>
     </>
   )
 }
 
-export default Signup
+export default Profile

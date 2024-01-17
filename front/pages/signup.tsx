@@ -1,16 +1,17 @@
-import AppLayout from '@/components/AppLayout'
+
+import Signup from '@/components/Signup'
 import Head from 'next/head'
 import React from 'react'
 
-function Signup() {
+function signup() {
   return (
     <>
     <Head>
         <title>회원가입 | TravelBird</title>
     </Head>
-    <AppLayout>회원가입 페이지</AppLayout>
+   <Signup/>
     </>
   )
 }
 
-export default Signup
+export default signup

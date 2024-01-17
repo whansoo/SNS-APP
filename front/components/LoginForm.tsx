@@ -19,7 +19,7 @@ function LoginForm() {
   return (
     <L.Container>
         <div style={{marginTop: '40px'}}>
-        <Image src="/travel-logo.svg" alt="설명" width={50} height={50}/>
+       <Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50}/></Link>
         <h2>
         로그인을 하고
         <br />

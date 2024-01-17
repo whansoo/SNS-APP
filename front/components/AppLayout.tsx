@@ -29,7 +29,7 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
             />,
             key: '/search' },
             { label: <Link href="/signup">프로필</Link>, key: '/profile' },
-            { label: <Link href="/signup">로그아웃</Link>, key: '/profile' },
+            { label: <Link href="/login">로그인</Link>, key: '/login' },
           ]}
         />
       </Header>

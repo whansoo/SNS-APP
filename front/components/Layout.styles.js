@@ -7,6 +7,7 @@ const Container = styled.div`
   margin: auto auto 0;
   min-height: 100vh;
   border: 1px solid #c8c8c8;
+
 `
 
 const L = {

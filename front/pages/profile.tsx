@@ -1,4 +1,5 @@
 import AppLayout from '@/components/AppLayout'
+import ProfileForm from '@/components/ProfileForm'
 import Head from 'next/head'
 import React from 'react'
 
@@ -8,7 +9,7 @@ function Profile() {
     <Head>
         <title>프로필 | TravelBird</title>
     </Head>
-    <AppLayout>프로필 페이지</AppLayout>
+    <ProfileForm/>
     </>
   )
 }

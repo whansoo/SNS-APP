@@ -39,7 +39,7 @@ const items: MenuItem[] = [
   getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
   getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
   getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
-  getItem('프로필', 'sub1', <UserOutlined />, [
+  getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
     getItem('글목록', '3'),
     getItem('팔로잉', '4'),
     getItem('팔로워', '5'),
@@ -80,7 +80,7 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
             }}
           />
           <div><Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50} style={{marginTop: '6px'}}/></Link></div>
-          <div style={{marginTop: '-17px', marginLeft: '10px'}}><h3>TravelBird에 오신 것을 환영합니다</h3></div>
+          <div style={{marginTop: '-17px', marginLeft: '10px',whiteSpace: 'nowrap'}}><h2>TravelBird에 오신 것을 환영합니다</h2></div>
           </Header>
         {/* <a href='/' style={{display: 'inline'}}><Image src="/travel-logo.svg" alt="설명" width={50} height={50}></Image></a> */}
        

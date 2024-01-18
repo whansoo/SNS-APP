@@ -1,54 +1,112 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { Col, Layout, Menu, Row, Input } from 'antd'
-import { Content, Header } from 'antd/es/layout/layout'
 import styled from 'styled-components';
 import L from './Layout.styles';
+import {
+  DesktopOutlined,
+  EditOutlined,
+  HomeOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  SearchOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Breadcrumb, Button, Input, Layout, Menu, theme } from 'antd';
+import Image from 'next/image';
 
+const { Header, Content, Footer, Sider } = Layout;
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  } as MenuItem;
+}
 const SearchInput = styled(Input.Search)`
 vertical-align: middle;
 `;
+const items: MenuItem[] = [
+  getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
+  getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
+  getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
+  getItem('프로필', 'sub1', <UserOutlined />, [
+    getItem('글목록', '3'),
+    getItem('팔로잉', '4'),
+    getItem('팔로워', '5'),
+  ]),
+   
+  getItem('글쓰기', '9', <EditOutlined />),
+];
+
 
 
 
 
 function AppLayout ({ children }: { children: React.ReactNode } ) {
- 
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
   return (
     <L.Container>
-    <Layout className="layout">
-      <Header style={{ position: 'fixed', zIndex: 1, width:'560px'}}>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-        
-          items={[
-            { label: <Link href="/">Travelbird</Link>, key: '/' },
-            { label: <SearchInput
-              // enterButton
-            />,
-            key: '/search' },
-            { label: <Link href="/signup">프로필</Link>, key: '/profile' },
-            { label: <Link href="/login">로그인</Link>, key: '/login' },
-          ]}
-        />
-      </Header>
-      <Content style={{ padding: '0 50px', marginTop: 80 }}>
-        <div style={{ minHeight: '400px', padding: '24px', backgroundColor: '#FFF' }}>
-          {/* gutter 컬럼 사이의 간격 */}
-          <Row gutter={12}>
-            <Col xs={24} sm={24} md={8} lg={4} style={{ paddingTop: '12px' }}>
-              Travelbird
-            </Col>
-            <Col xs={24} sm={24} md={8} lg={4} style={{ paddingTop: '12px' }}>
-              프로필
-            </Col>
-            <Col xs={24} sm={24} md={16} lg={20} style={{ paddingTop: '12px' }}>
-              {children}
-            </Col>
-          </Row>
-        </div>
-      </Content>
+    <Layout style={{ minHeight: '100vh'}}>
+      <Sider  trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'white' }}>
+        <div className="demo-logo-vertical" />
+        <Menu defaultSelectedKeys={['1']} mode="inline" items={items} />
+      </Sider>
+      <Layout>
+     
+          {/*header 부분 */}
+        <Header style={{display: 'flex', background: colorBgContainer, padding: '0' }}> 
+   
+        <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: '16px',
+              width: 64,
+              height: 64,
+            }}
+          />
+          <div><Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50}/></Link></div>
+          <div><h3>TravelBird에 오신것을 환영합니다</h3></div>
+          </Header>
+        {/* <a href='/' style={{display: 'inline'}}><Image src="/travel-logo.svg" alt="설명" width={50} height={50}></Image></a> */}
+       
+       
+          {/*content부분*/}
+        <Content style={{ margin: '0 16px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            Bill is a cat.
+          </div>
+        </Content>
+        {/*footer 부분 */}
+        <Footer style={{ textAlign: 'center' }}>
+         
+        </Footer>
+      </Layout>
     </Layout>
     </L.Container>
   )

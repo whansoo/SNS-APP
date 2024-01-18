@@ -91,16 +91,20 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            Bill is a cat.
-          </div>
+          {[1,2,3,4,5].map((star) => (
+              <div
+              style={{
+                padding: 24,
+                marginBottom: '20px',
+                minHeight: 300,
+                background: colorBgContainer,
+                borderRadius: borderRadiusLG,
+              }}
+              >
+              글 내용이 들어갑니다.
+              </div>
+          ))}
+         
         </Content>
         {/*footer 부분 */}
         <Footer style={{ textAlign: 'center' }}>

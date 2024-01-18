@@ -79,8 +79,8 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
               height: 64,
             }}
           />
-          <div><Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50}/></Link></div>
-          <div><h3>TravelBird에 오신것을 환영합니다</h3></div>
+          <div><Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50} style={{marginTop: '6px'}}/></Link></div>
+          <div style={{marginTop: '-17px', marginLeft: '10px'}}><h3>TravelBird에 오신 것을 환영합니다</h3></div>
           </Header>
         {/* <a href='/' style={{display: 'inline'}}><Image src="/travel-logo.svg" alt="설명" width={50} height={50}></Image></a> */}
        

@@ -11,8 +11,8 @@ import {
   SearchOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Button, Input, Layout, Menu, theme } from 'antd';
+import type { DrawerProps, MenuProps } from 'antd';
+import { Breadcrumb, Button, Drawer, Input, Layout, Menu, theme } from 'antd';
 import Image from 'next/image';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -53,16 +53,40 @@ const items: MenuItem[] = [
 
 
 function AppLayout ({ children }: { children: React.ReactNode } ) {
+  const { token } = theme.useToken();
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const containerStyle: React.CSSProperties = {
+    position: 'relative',
+    // height: '200',
+    // padding: 48,
+    // width: '500px',
+    // overflow: 'hidden',
+    // background: token.colorFillAlter,
+    // border: `1px solid ${token.colorBorderSecondary}`,
+  };
+
   return (
-    <L.Container>
+    <>
+    <L.Container style={containerStyle}>
     <Layout style={{ minHeight: '100vh'}}>
       <Sider  trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'white' }}>
         <div className="demo-logo-vertical" />
-        <Menu defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
       </Sider>
       <Layout>
      
@@ -84,7 +108,9 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
           </Header>
         {/* <a href='/' style={{display: 'inline'}}><Image src="/travel-logo.svg" alt="설명" width={50} height={50}></Image></a> */}
        
-       
+        <Button onClick={showDrawer} style={{width:'100px', backgroundColor:'orange', color:'black'}}>
+        <EditOutlined />글쓰기
+        </Button>
           {/*content부분*/}
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
@@ -112,7 +138,28 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
         </Footer>
       </Layout>
     </Layout>
+    <Drawer
+        title="글쓰기"
+        placement="top"
+        closable={false}
+        onClose={onClose}
+        open={open}
+        getContainer={false}
+        style={{borderRadius:'10px',textAlign:'center'}}
+      >
+        <p>Some contents...</p>
+      </Drawer>
+  
+   
     </L.Container>
+   
+    
+    
+        
+    
+    
+ 
+      </>
   )
 }
 

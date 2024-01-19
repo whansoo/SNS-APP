@@ -35,18 +35,18 @@ function getItem(
 const SearchInput = styled(Input.Search)`
 vertical-align: middle;
 `;
-const items: MenuItem[] = [
-  getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
-  getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
-  getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
-  getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
-    getItem('글목록', '3'),
-    getItem('팔로잉', '4'),
-    getItem('팔로워', '5'),
-  ]),
+// const items: MenuItem[] = [
+//   getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
+//   getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
+//   getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
+//   getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
+//     getItem('글목록', '3'),
+//     getItem('팔로잉', '4'),
+//     getItem('팔로워', '5'),
+//   ]),
    
-  getItem('글쓰기', '9', <EditOutlined />),
-];
+//   getItem('글쓰기', '글쓰기', <EditOutlined />),
+// ];
 
 
 
@@ -55,9 +55,10 @@ const items: MenuItem[] = [
 function AppLayout ({ children }: { children: React.ReactNode } ) {
   const { token } = theme.useToken();
   const [open, setOpen] = useState(false);
-
-  const showDrawer = () => {
+  const [current, setCurrent] = useState('글쓰기');
+  const showDrawer = (e:any) => {
     setOpen(true);
+    setCurrent(e.key)
   };
 
   const onClose = () => {
@@ -86,7 +87,20 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
     <Layout style={{ minHeight: '100vh'}}>
       <Sider  trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'white' }}>
         <div className="demo-logo-vertical" />
-        <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
+        <Menu defaultSelectedKeys={['1']} mode="inline" items={[
+getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
+getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
+getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
+getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
+  getItem('글목록', '3'),
+  getItem('팔로잉', '4'),
+  getItem('팔로워', '5'),
+]),
+ 
+getItem(<span onClick={showDrawer}>글쓰기</span>, '6', <span onClick={showDrawer}><EditOutlined /></span>),
+
+
+        ]}/>
       </Sider>
       <Layout>
      
@@ -108,15 +122,8 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
           </Header>
         {/* <a href='/' style={{display: 'inline'}}><Image src="/travel-logo.svg" alt="설명" width={50} height={50}></Image></a> */}
        
-        <Button onClick={showDrawer} style={{width:'100px', backgroundColor:'orange', color:'black'}}>
-        <EditOutlined />글쓰기
-        </Button>
           {/*content부분*/}
-        <Content style={{ margin: '0 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+        <Content style={{ margin: '10px 16px' }}>
           {[1,2,3,4,5].map((star) => (
               <div
               style={{

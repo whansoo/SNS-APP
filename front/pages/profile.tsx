@@ -1,4 +1,4 @@
-import AppLayout from '@/components/AppLayout'
+import AppLayout from '@/components/MainForm'
 import ProfileForm from '@/components/ProfileForm'
 import Head from 'next/head'
 import React from 'react'

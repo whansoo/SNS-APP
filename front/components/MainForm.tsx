@@ -11,8 +11,8 @@ import {
   SearchOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import type { DrawerProps, MenuProps } from 'antd';
-import { Breadcrumb, Button, Drawer, Input, Layout, Menu, theme } from 'antd';
+import type { MenuProps } from 'antd';
+import { Button, Drawer, Input, Layout, Menu, theme } from 'antd';
 import Image from 'next/image';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -34,25 +34,10 @@ function getItem(
 }
 const SearchInput = styled(Input.Search)`
 vertical-align: middle;
-`;
-// const items: MenuItem[] = [
-//   getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
-//   getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
-//   getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
-//   getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
-//     getItem('글목록', '3'),
-//     getItem('팔로잉', '4'),
-//     getItem('팔로워', '5'),
-//   ]),
-   
-//   getItem('글쓰기', '글쓰기', <EditOutlined />),
-// ];
+`
 
 
-
-
-
-function AppLayout ({ children }: { children: React.ReactNode } ) {
+function MainForm ({ children }: { children: React.ReactNode } ) {
   const { token } = theme.useToken();
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState('글쓰기');
@@ -65,7 +50,6 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
     setOpen(false);
   };
 
-
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -73,12 +57,6 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
 
   const containerStyle: React.CSSProperties = {
     position: 'relative',
-    // height: '200',
-    // padding: 48,
-    // width: '500px',
-    // overflow: 'hidden',
-    // background: token.colorFillAlter,
-    // border: `1px solid ${token.colorBorderSecondary}`,
   };
 
   return (
@@ -88,25 +66,21 @@ function AppLayout ({ children }: { children: React.ReactNode } ) {
       <Sider  trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'white' }}>
         <div className="demo-logo-vertical" />
         <Menu defaultSelectedKeys={['1']} mode="inline" items={[
-getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
-getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
-getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
-getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
-  getItem('글목록', '3'),
-  getItem('팔로잉', '4'),
-  getItem('팔로워', '5'),
-]),
- 
-getItem(<span onClick={showDrawer}>글쓰기</span>, '6', <span onClick={showDrawer}><EditOutlined /></span>),
-
-
+          getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),
+          getItem(<SearchInput/>, 'sub2', <SearchOutlined />),   
+          getItem(<Link href="/login">로그인</Link>, '2', <DesktopOutlined />),
+          getItem(<Link href="/profile">프로필</Link>, 'sub1', <Link href="/profile"><UserOutlined /></Link>, [
+            getItem('글목록', '3'),
+            getItem('팔로잉', '4'),
+            getItem('팔로워', '5'),
+          ]),
+          getItem(<span onClick={showDrawer}>글쓰기</span>, '6', <span onClick={showDrawer}><EditOutlined /></span>),
         ]}/>
       </Sider>
       <Layout>
      
           {/*header 부분 */}
         <Header style={{display: 'flex', background: colorBgContainer, padding: '0' }}> 
-   
         <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -117,15 +91,15 @@ getItem(<span onClick={showDrawer}>글쓰기</span>, '6', <span onClick={showDra
               height: 64,
             }}
           />
-          <div><Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50} style={{marginTop: '6px'}}/></Link></div>
-          <div style={{marginTop: '-17px', marginLeft: '10px',whiteSpace: 'nowrap'}}><h2>TravelBird에 오신 것을 환영합니다</h2></div>
+          <div><Link href='/'><Image src="/travel-logo.svg" alt="설명" width={50} height={50} style={{marginTop: '6px',marginLeft: '70px'}}/></Link></div>
+          <div style={{marginTop: '-17px', marginLeft: '5px',whiteSpace: 'nowrap'}}><h2>TravelBird</h2></div>
           </Header>
-        {/* <a href='/' style={{display: 'inline'}}><Image src="/travel-logo.svg" alt="설명" width={50} height={50}></Image></a> */}
        
           {/*content부분*/}
         <Content style={{ margin: '10px 16px' }}>
           {[1,2,3,4,5].map((star) => (
               <div
+              key={star}
               style={{
                 padding: 24,
                 marginBottom: '20px',
@@ -141,7 +115,7 @@ getItem(<span onClick={showDrawer}>글쓰기</span>, '6', <span onClick={showDra
         </Content>
         {/*footer 부분 */}
         <Footer style={{ textAlign: 'center' }}>
-         
+
         </Footer>
       </Layout>
     </Layout>
@@ -156,18 +130,9 @@ getItem(<span onClick={showDrawer}>글쓰기</span>, '6', <span onClick={showDra
       >
         <p>Some contents...</p>
       </Drawer>
-  
-   
     </L.Container>
-   
-    
-    
-        
-    
-    
- 
       </>
   )
 }
 
-export default AppLayout
+export default MainForm

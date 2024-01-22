@@ -1,4 +1,6 @@
 const express = require('express');
+const postRouter = require('./routes/post');
+
 
 const app = express();
 
@@ -15,13 +17,8 @@ app.get('/api/posts', (req, res) => {
         { id:3, content: 'hello3' },
     ]);
 });
-app.post('/api/post', (req, res) => {
-    res.json('작성 완료');
-});
-app.delete('/api/delete', (req, res) => {
-    res.send('hello api');
-});
 
+app.use('/post', postRouter);
 
 app.listen(3065, () => {
     console.log('서버 실행 중')

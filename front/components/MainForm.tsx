@@ -33,7 +33,7 @@ function getItem(
   } as MenuItem;
 }
 const SearchInput = styled(Input.Search)`
-vertical-align: middle;
+  vertical-align: middle;
 `
 
 
@@ -63,7 +63,7 @@ function MainForm ({ children }: { children: React.ReactNode } ) {
     <>
     <L.Container style={containerStyle}>
     <Layout style={{ minHeight: '100vh'}}>
-      <Sider  trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'white' }}>
+      <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor: 'white' }}>
         <div className="demo-logo-vertical" />
         <Menu defaultSelectedKeys={['1']} mode="inline" items={[
           getItem(<Link href="/">Home</Link>, '1', <HomeOutlined />),

@@ -1,5 +1,6 @@
 const express = require('express');
 const postRouter = require('./routes/post');
+const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 
 const app = express();
@@ -13,6 +14,8 @@ sequelize.sync({ force: false })
     console.error(err);
   });
 
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('hello express');
@@ -29,6 +32,7 @@ app.get('/api/posts', (req, res) => {
 });
 
 app.use('/post', postRouter);
+app.use('/user', userRouter);
 
 app.listen(3065, () => {
     console.log('서버 실행 중')

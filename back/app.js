@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
@@ -14,6 +15,9 @@ sequelize.sync({ force: false })
     console.error(err);
   });
 
+  app.use(cors({
+    origin: true,
+  }));
   app.use(express.json()); //front에서 json형식으로 데이터를 보냈을 때 json형식을 req.body안에 넣어주고 
   app.use(express.urlencoded({ extended: true })); //form submit을 했을 때 데이터를 req.body를 넣어줌
 

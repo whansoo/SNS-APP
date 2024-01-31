@@ -1,9 +1,9 @@
 
 export default interface User {
-    id: number;
+    // id: number;
     email: string;
     nickname: string;
     password: string;
-    Followings: User[];
-    Followers: User[];
+    // Followings: User[];
+    // Followers: User[];
   }

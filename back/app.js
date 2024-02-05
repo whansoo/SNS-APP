@@ -1,11 +1,16 @@
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const dotenv = require('dotenv');
 
 
+dotenv.config();
 const app = express();
 
 
@@ -24,7 +29,15 @@ passportConfig();
   }));
   app.use(express.json()); //front에서 json형식으로 데이터를 보냈을 때 json형식을 req.body안에 넣어주고 
   app.use(express.urlencoded({ extended: true })); //form submit을 했을 때 데이터를 req.body를 넣어줌
-
+  app.use(cookieParser(process.env.COOKIE_SECRET));
+  app.use(session({
+    saveUninitialized: false,
+    resave: false,
+    secret: process.env.COOKIE_SECRET,
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
 app.get('/', (req, res) => {
     res.send('hello express');
 });

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       db.Post.hasMany(db.Comment); //게시글 하나에 댓글 여러개 
       db.Post.hasMany(db.Image); //게시글 하나에 이미지 여러개 
       db.Post.belongsToMany(db.User, { through: 'Like' }); // 유저와 게시글간 좋아요 관계 대다대 관계
-      db.Post.belongsTo(db.Post, {as: 'Retweet'});
+      db.Post.belongsTo(db.Post, { as: 'Retweet' });
     };
        return Post;
     }

@@ -14,6 +14,7 @@ import {
 import type { MenuProps } from 'antd';
 import { Button, Drawer, Input, Layout, Menu, theme } from 'antd';
 import Image from 'next/image';
+import PostCard from './PostCard';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -97,7 +98,10 @@ function MainForm ({ children }: { children: React.ReactNode } ) {
        
           {/*content부분*/}
         <Content style={{ margin: '10px 16px' }}>
-          {[1,2,3,4,5].map((star) => (
+        
+            <PostCard />
+        
+          {/* {[1,2,3,4,5].map((star) => (
               <div
               key={star}
               style={{
@@ -110,7 +114,7 @@ function MainForm ({ children }: { children: React.ReactNode } ) {
               >
               글 내용이 들어갑니다.
               </div>
-          ))}
+          ))} */}
          
         </Content>
         {/*footer 부분 */}

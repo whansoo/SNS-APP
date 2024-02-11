@@ -99,7 +99,7 @@ router.delete('/:postId', isLoggedIn, async (req, res, next) => { // DELETE  /po
         UserId: req.user.id,
       },
     });
-    res.json({ PostId: req.params.postId });
+    res.status(200).json({ PostId: req.params.postId });
   } catch (error) {
     console.error(error);
     next(error);

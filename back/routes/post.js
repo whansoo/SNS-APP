@@ -91,7 +91,16 @@ router.delete('/:postId/like', async (req, res, next) => { // DELETE  /post/1/li
   }
 })
 
-router.delete('/', (req, res) => {
+router.delete('/:postId', async (req, res, next) => { // DELETE  /post/10
+  try {
+    await Post.destroy({
+      where: { id: req.params.postId },
+    });
+    res.json({ id: req.params.postId })
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
     res.json({ id:1 });
 });
 

@@ -17,12 +17,16 @@ router.post('/', isLoggedIn, async (req, res, next) => {
         }, {
             model: Comment,
             include: [{
-              model: User,
+              model: User, // 댓글 작성자
               attributes: ['id', 'nickname'],
             }]  
         }, {
-            model: User,
+            model: User, // 게시글 작성자
             attributes: ['id', 'nickname'],
+        }, {
+            model: User, // 좋아요 누른사람
+            as: 'Likers',
+            attributes: ['id'],
         }]
       })
         res.status(201).json(fullPost);

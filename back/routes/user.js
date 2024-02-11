@@ -106,4 +106,9 @@ router.post('/logout', isLoggedIn, (req, res) => {
   res.send('ok');
 })
 
+
+router.patch('/nickname', isLoggedIn, (req, res) => {
+  
+})
+
 module.exports = router;

@@ -8,6 +8,14 @@ function PostCard() {
    
       <Card
         // cover={post.Images[0] && <PostImages images={post.Images} />}
+        style={{ padding: 10 }}
+        cover={
+            <img
+            //   style={{ height: '100rem' }}
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
         actions={[
             <>
             <RetweetOutlined  key="retweet"/>,

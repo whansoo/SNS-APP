@@ -8,8 +8,8 @@ router.get('/', async (req, res, next) => {
      const posts = await Post.findAll({
         limit: 10,
         order: [
-            ['createAt', 'DESC'],
-            [Comment, 'createAt', 'DESC'],
+            ['createdAt', 'DESC'],
+            [Comment, 'createdAt', 'DESC'],
          ],
         include: [{
             model: User,

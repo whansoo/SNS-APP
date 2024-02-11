@@ -99,22 +99,22 @@ function MainForm ({ children }: { children: React.ReactNode } ) {
           {/*content부분*/}
         <Content style={{ margin: '10px 16px' }}>
         
-            <PostCard />
         
-          {/* {[1,2,3,4,5].map((star) => (
-              <div
-              key={star}
-              style={{
-                padding: 24,
-                marginBottom: '20px',
-                minHeight: 300,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-              >
-              글 내용이 들어갑니다.
-              </div>
-          ))} */}
+          {[1,2,3,4,5].map((star) => (
+            <PostCard />
+              // <div
+              // key={star}
+              // style={{
+              //   padding: 24,
+              //   marginBottom: '20px',
+              //   minHeight: 300,
+              //   background: colorBgContainer,
+              //   borderRadius: borderRadiusLG,
+              // }}
+              // >
+              // 글 내용이 들어갑니다.
+              // </div>
+          ))}
          
         </Content>
         {/*footer 부분 */}

@@ -38,7 +38,10 @@ router.post('/', isLoggedIn, upload.none(), async (req, res, next) => {
             UserId: req.user.id,
           });
       if (hashtags) {
-        await Promise.all(hashtags.map((tag) => Hashtag.create({ name: tag.slice(1).toLowerCase() })));
+       const result =  await Promise.all(hashtags.map((tag) => Hashtag.findOrCreate({ 
+          where: { name: tag.slice(1).toLowerCase() },
+         }))); // [[노드, true], [리액트, true]]
+         await post.addHashtags(result.map((v) => v[0]));
       }
        if (req.body.image) {
         if(Array.isArray(req.body.image)) { // 이미지를 여러개 올리면 image: [이미지1.png, 이미지2.png]

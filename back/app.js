@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const passport = require('passport');
 const postRouter = require('./routes/post');
 const postsRouter = require('./routes/posts');
@@ -29,6 +30,7 @@ app.use(morgan('dev'));
     origin: true, //cors 오류를 해결하기 위해 back에서 설정해줘야함 요청하는 모든 출처를 허용 함
     credentials: true, //cookie를 공유하기 위해서 설정
   }));
+  app.use('/', express.static(path.join(__dirname, 'uploads')));
   app.use(express.json()); //front에서 json형식으로 데이터를 보냈을 때 json형식을 req.body안에 넣어주고 
   app.use(express.urlencoded({ extended: true })); //form submit을 했을 때 데이터를 req.body를 넣어줌
   app.use(cookieParser(process.env.COOKIE_SECRET));
